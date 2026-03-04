@@ -55,17 +55,20 @@ def removeNode(dataToRemove):
     if startPointer == -1:
         return False
         
+
+    
+    # Check if the node to be removed is the first node
+    if linkedList[startPointer].Data == dataToRemove:
+        startPointer = linkedList[startPointer].nextNode
+        # Add the removed node back to the empty list
+        linkedList[startPointer].nextNode = emptyListStartPointer
+        emptyListStartPointer = startPointer
+        return True
+
+
     currentPointer = startPointer
     previousPointer = -1
     
-    # Check if the node to be removed is the first node
-    if linkedList[currentPointer].Data == dataToRemove:
-        startPointer = linkedList[currentPointer].nextNode
-        # Add the removed node back to the empty list
-        linkedList[currentPointer].nextNode = emptyListStartPointer
-        emptyListStartPointer = currentPointer
-        return True
-        
     # Traverse the list to find the node
     while currentPointer != -1 and linkedList[currentPointer].Data != dataToRemove:
         previousPointer = currentPointer
