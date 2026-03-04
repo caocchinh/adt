@@ -16,8 +16,8 @@ def outputNodes(start, linkedListArray):
         print(linkedListArray[current].Data)
         current = linkedListArray[current].nextNode
 
-def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd):
-
+def addNodeWithData(dataToAdd):
+    global emptyListStartPointer, linkedList, startPointer
     # Step 1: Validate that emptyListStartPointer points to a valid index (0-9)
     # If emptyListStartPointer is out of bounds (no free slots), return False, emptyListStartPointer
     if emptyListStartPointer < 0 or emptyListStartPointer > len(linkedList) - 1:
@@ -37,7 +37,7 @@ def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd
 
     # Step 5: Find the last node in the linked list to attach the new node
     # Traverse until we find a node whose nextNode is -1 (the tail)
-    previousPointer = currentPointer
+    previousPointer = startPointer
     while linkedList[previousPointer].nextNode != -1:
         previousPointer = linkedList[previousPointer].nextNode
 
@@ -59,7 +59,7 @@ def testAddNode():
 
     # Test adding a node with value 99
     print("\nAdding node with value 99...")
-    result = addNodeWithData(linkedList, startPointer, emptyListStartPointer, 99)
+    result = addNodeWithData(99)
 
     if result:
         print("Node added successfully!")
