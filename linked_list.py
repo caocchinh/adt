@@ -58,7 +58,7 @@ def removeNode(dataToRemove):
     # Check if the node to be removed is the first node
     if linkedList[startPointer].Data == dataToRemove:
         oldStartPointer = startPointer
-        startPointer = linkedList[startPointer].nextNode
+        startPointer = linkedList[oldStartPointer].nextNode
         linkedList[oldStartPointer].nextNode = emptyListStartPointer
         emptyListStartPointer = oldStartPointer
         return True
