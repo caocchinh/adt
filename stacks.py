@@ -1,6 +1,3 @@
-# Computer Science A-level Style Stack ADT Implementation
-# Uses a fixed-size array and a top pointer
-
 stackSize = 10
 stack = [None] * stackSize
 topPointer = -1
@@ -51,41 +48,38 @@ def outputStack():
         for i in range(topPointer, -1, -1):
             print(f"[{i}]: {stack[i]}")
 
-# Demonstration / Testing for A-level course
-if __name__ == "__main__":
-    print("=== Pure Stack ADT Demonstration ===")
-    
-    outputStack()
-    
-    print("\nPushing items: 5, 12, 8")
-    push(5)
-    push(12)
-    push(8)
-    outputStack()
-    
-    print(f"\nPeek top: {peek()}")
-    
-    print("\nPopping two items...")
-    print(f"Popped: {pop()}")
-    print(f"Popped: {pop()}")
-    outputStack()
-    
-    print("\nPushing until full (Max size: 10)...")
-    for i in range(1, 11):
-        push(i * 10)
-    
-    outputStack()
-    
-    print("\nAttempting overflow push...")
-    push(999)
-    
-    print("\nPopping everything until empty...")
-    while not isEmpty():
-        pop()
-    
-    outputStack()
-    
-    print("\nAttempting underflow pop...")
+
+outputStack()
+
+print("\nPushing items: 5, 12, 8")
+push(5)
+push(12)
+push(8)
+outputStack()
+
+print(f"\nPeek top: {peek()}")
+
+print("\nPopping two items...")
+print(f"Popped: {pop()}")
+print(f"Popped: {pop()}")
+outputStack()
+
+print("\nPushing until full (Max size: 10)...")
+for i in range(1, 11):
+    push(i * 10)
+
+outputStack()
+
+print("\nAttempting overflow push...")
+push(999)
+
+print("\nPopping everything until empty...")
+while not isEmpty():
     pop()
 
-    print("\n=== Demonstration Complete ===")
+outputStack()
+
+print("\nAttempting underflow pop...")
+pop()
+
+print("\n=== Demonstration Complete ===")

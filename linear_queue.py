@@ -32,12 +32,6 @@ def countItem():
 
 
 enQueue(2)
-enQueue(3)
-enQueue(4)
-enQueue(4)
-enQueue(4)
-enQueue(4)
-
 
 print(queue)
 print(countItem())
