@@ -3,8 +3,8 @@ class node:
         self.Data = theData
         self.nextNode = nextNodeNumber 
 
-linkedList = [node(1,1),node(5,4),node(6,7),node(7,-1),node(2,2),node(0,6),
- node(0,8),node(56,3),node(0,9),node(0,-1)]
+linkedList = [node(1,1),node(5,4),node(6,7),node(7,-1),node(2,2),node(None,6),
+ node(None,8),node(56,3),node(None,9),node(None,-1)]
 startPointer = 0
 emptyListStartPointer = 5 
 
@@ -59,12 +59,13 @@ def removeNode(dataToRemove):
     if linkedList[startPointer].Data == dataToRemove:
         oldStartPointer = startPointer
         startPointer = linkedList[oldStartPointer].nextNode
-        linkedList[oldStartPointer].nextNode = emptyListStartPointer
-        emptyListStartPointer = oldStartPointer
+        linkedList[oldStartPointer].Data = None
+        linkedList[oldStartPointer].nextNode = emptyListStartPointer # Make it point to the first item in the empty list
+        emptyListStartPointer = oldStartPointer # Make the empty list start at the removed node
         return True
 
 
-    currentPointer = startPointer
+    currentPointer = startPointer # 
     previousPointer = -1
 
     # Traverse the list to find the node
@@ -76,12 +77,13 @@ def removeNode(dataToRemove):
     if currentPointer == -1:
         return False
         
-    # Bypass the node to be removed
+    # Bypass the node to be removed, by pointing it to the next node
     linkedList[previousPointer].nextNode = linkedList[currentPointer].nextNode
     
     # Add the removed node back to the empty list
-    linkedList[currentPointer].nextNode = emptyListStartPointer
-    emptyListStartPointer = currentPointer
+    linkedList[currentPointer].Data = None
+    linkedList[currentPointer].nextNode = emptyListStartPointer # Make it point to the first item in the empty lít
+    emptyListStartPointer = currentPointer # Make the empty list start at the removed node
     
     return True
 
