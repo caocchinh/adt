@@ -22,10 +22,10 @@ def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd
     # Step 1: Validate that emptyListStartPointer points to a valid index (0-9)
     # If emptyListStartPointer is out of bounds (no free slots), return False, emptyListStartPointer
     if emptyListStartPointer < 0 or emptyListStartPointer > len(linkedList) - 1:
-        return False, emptyListStartPointer
+        return False
 
     # Step 2: Save the next free slot BEFORE overwriting the empty node
-    nextEmpty = linkedList[emptyListStartPointer].nextNode
+    emptyListStartPointer = linkedList[emptyListStartPointer].nextNode
 
     # Step 3: Create a new node with the input data and nextNode = -1 (end of list)
     newNode = node(dataToAdd, -1)
@@ -43,7 +43,7 @@ def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd
     linkedList[previousPointer].nextNode = emptyListStartPointer
 
     # Step 7: Return success and the updated emptyList pointer
-    return True, nextEmpty
+    return True, emptyListStartPointer
 
 def testAddNode():
     """Test function to demonstrate addNode without user input"""
