@@ -8,13 +8,14 @@ linkedList = [node(1,1),node(5,4),node(6,7),node(7,-1),node(2,2),node(0,6),
 startPointer = 0
 emptyListStartPointer = 5 
 
-def outputNodes(start, linkedListArray):
+def outputNodes():
+    global startPointer, linkedList
     # Start from the beginning of the list
-    current = start
+    current = startPointer
     # Continue until we reach a node with nextNode = -1
     while current != -1:
-        print(linkedListArray[current].Data)
-        current = linkedListArray[current].nextNode
+        print(linkedList[current].Data)
+        current = linkedList[current].nextNode
 
 def addNodeWithData(dataToAdd):
     global emptyListStartPointer, linkedList, startPointer
@@ -47,12 +48,48 @@ def addNodeWithData(dataToAdd):
     # Step 7: Return success and the updated emptyList pointer
     return True
 
+def removeNode(dataToRemove):
+    global startPointer, emptyListStartPointer, linkedList
+    
+    # Check if the list is empty
+    if startPointer == -1:
+        return False
+        
+    currentPointer = startPointer
+    previousPointer = -1
+    
+    # Check if the node to be removed is the first node
+    if linkedList[currentPointer].Data == dataToRemove:
+        startPointer = linkedList[currentPointer].nextNode
+        # Add the removed node back to the empty list
+        linkedList[currentPointer].nextNode = emptyListStartPointer
+        emptyListStartPointer = currentPointer
+        return True
+        
+    # Traverse the list to find the node
+    while currentPointer != -1 and linkedList[currentPointer].Data != dataToRemove:
+        previousPointer = currentPointer
+        currentPointer = linkedList[currentPointer].nextNode
+        
+    # If the node was not found
+    if currentPointer == -1:
+        return False
+        
+    # Bypass the node to be removed
+    linkedList[previousPointer].nextNode = linkedList[currentPointer].nextNode
+    
+    # Add the removed node back to the empty list
+    linkedList[currentPointer].nextNode = emptyListStartPointer
+    emptyListStartPointer = currentPointer
+    
+    return True
+
 def testAddNode():
     """Test function to demonstrate addNode without user input"""
     global emptyListStartPointer
     print("=== Testing addNode function ===")
     print("Current list:")
-    outputNodes(startPointer, linkedList)
+    outputNodes()
 
     print(f"\nCurrent emptyListStartPointer: {emptyListStartPointer}")
     print("Available empty nodes chain: 5->6->8->9->-1")
@@ -65,11 +102,31 @@ def testAddNode():
         print("Node added successfully!")
         print(f"Updated emptyListStartPointer: {emptyListStartPointer}")
         print("Updated list:")
-        outputNodes(startPointer, linkedList)
+        outputNodes()
     else:
         print("Failed to add node - no empty slots available")
 
     print("\n=== Test Complete ===")
 
-# Run the test
+def testRemoveNode():
+    """Test function to demonstrate removeNode without user input"""
+    global emptyListStartPointer
+    print("\n=== Testing removeNode function ===")
+    
+    # Let's remove an existing node, e.g., value 6
+    print("Attempting to remove node with value 6...")
+    result = removeNode(6)
+    
+    if result:
+        print("Node removed successfully!")
+        print(f"Updated emptyListStartPointer: {emptyListStartPointer}")
+        print("Updated list:")
+        outputNodes()
+    else:
+        print("Failed to remove node")
+    
+    print("\n=== Test Complete ===")
+
+# Run the tests
 testAddNode()
+testRemoveNode()
