@@ -17,7 +17,6 @@ def outputNodes(start, linkedListArray):
         current = linkedListArray[current].nextNode
 
 def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd):
-    """Version of addNode that accepts data as parameter for testing"""
 
     # Step 1: Validate that emptyListStartPointer points to a valid index (0-9)
     # If emptyListStartPointer is out of bounds (no free slots), return False, emptyListStartPointer
@@ -25,13 +24,16 @@ def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd
         return False
 
     # Step 2: Save the next free slot BEFORE overwriting the empty node
+    oldEmptyListStartPointer = emptyListStartPointer
+
+    # Step 2.1: Update the emptyListStartPointer to the next free slot
     emptyListStartPointer = linkedList[emptyListStartPointer].nextNode
 
     # Step 3: Create a new node with the input data and nextNode = -1 (end of list)
     newNode = node(dataToAdd, -1)
 
     # Step 4: Place the new node in the current emptyListStartPointer position
-    linkedList[emptyListStartPointer] = newNode
+    linkedList[oldEmptyListStartPointer] = newNode
 
     # Step 5: Find the last node in the linked list to attach the new node
     # Traverse until we find a node whose nextNode is -1 (the tail)
@@ -40,10 +42,10 @@ def addNodeWithData(linkedList, currentPointer, emptyListStartPointer, dataToAdd
         previousPointer = linkedList[previousPointer].nextNode
 
     # Step 6: Attach the new node to the end of the list
-    linkedList[previousPointer].nextNode = emptyListStartPointer
+    linkedList[previousPointer].nextNode = oldEmptyListStartPointer
 
     # Step 7: Return success and the updated emptyList pointer
-    return True, emptyListStartPointer
+    return True
 
 def testAddNode():
     """Test function to demonstrate addNode without user input"""
@@ -57,7 +59,7 @@ def testAddNode():
 
     # Test adding a node with value 99
     print("\nAdding node with value 99...")
-    result, emptyListStartPointer = addNodeWithData(linkedList, startPointer, emptyListStartPointer, 99)
+    result = addNodeWithData(linkedList, startPointer, emptyListStartPointer, 99)
 
     if result:
         print("Node added successfully!")
