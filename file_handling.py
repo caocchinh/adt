@@ -13,7 +13,12 @@ try:
     with open("test.txt", "r") as file:
         # Method 1: readlines() with list comprehension and strip()
         # strip() removes whitespace from both ends, including \n
-        content_stripped = [line.strip() for line in file.readlines()]
+        content_stripped = file.readlines()
+
+        # content_stripped = [line.strip() for line in file.readlines()]
+
+        for i in range(len(content_stripped)):
+            content_stripped[i] = content_stripped[i].strip()
     
         print("\n--- File Content (with readlines() and strip()) ---")
         print(content_stripped)
