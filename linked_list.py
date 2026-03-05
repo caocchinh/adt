@@ -117,8 +117,8 @@ def testRemoveNode():
     print("\n=== Testing removeNode function ===")
     
     # Let's remove an existing node, e.g., value 6
-    print("Attempting to remove node with value 6...")
-    result = removeNode(1)
+    print("Attempting to remove node with value 99...")
+    result = removeNode(99)
     
     if result:
         print("Node removed successfully!")
