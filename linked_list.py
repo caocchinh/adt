@@ -28,7 +28,7 @@ def addNodeWithData(dataToAdd):
     oldEmptyListStartPointer = emptyListStartPointer
 
     # Step 2.1: Update the emptyListStartPointer to the next free slot
-    emptyListStartPointer = linkedList[emptyListStartPointer].nextNode
+    emptyListStartPointer = linkedList[oldEmptyListStartPointer].nextNode
 
     # Step 3: Create a new node with the input data and nextNode = -1 (end of list)
     newNode = node(dataToAdd, -1)
