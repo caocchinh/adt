@@ -67,14 +67,18 @@ def removeNode(dataToRemove):
 
     currentPointer = startPointer # 
     previousPointer = -1
+    isFound = False
 
     # Traverse the list to find the node
-    while currentPointer != -1 and linkedList[currentPointer].Data != dataToRemove:
+    while currentPointer != -1:
         previousPointer = currentPointer
         currentPointer = linkedList[currentPointer].nextNode
+        if linkedList[currentPointer].Data == dataToRemove:
+            isFound = True
+            break
         
     # If the node was not found
-    if currentPointer == -1:
+    if not isFound:
         return False
         
     # Bypass the node to be removed, by pointing it to the next node
@@ -118,7 +122,7 @@ def testRemoveNode():
     
     # Let's remove an existing node, e.g., value 6
     print("Attempting to remove node with value 99...")
-    result = removeNode(99)
+    result = removeNode(1)
     
     if result:
         print("Node removed successfully!")
@@ -133,6 +137,3 @@ def testRemoveNode():
 # Run the tests
 testAddNode()
 testRemoveNode()
-
-
-print(f"{3+4} = 7")
