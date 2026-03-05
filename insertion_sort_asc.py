@@ -25,7 +25,7 @@ def insertionSort(arr):
         # arr[0] = 5
         # [5, 11, 12, 13, 6]
 
-# A utility function to print array of size n
+# A utility function to print array of size n 
 def printArray(arr):
     for i in range(len(arr)):
         print(arr[i], end=" ")

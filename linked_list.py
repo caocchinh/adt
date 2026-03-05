@@ -17,7 +17,7 @@ def outputNodes():
         print(linkedList[current].Data)
         current = linkedList[current].nextNode
 
-def addNodeWithData(dataToAdd):
+def addNodeAtEndWithData(dataToAdd):
     global emptyListStartPointer, linkedList, startPointer
     # Step 1: Validate that emptyListStartPointer points to a valid index (0-9)
     # If emptyListStartPointer is out of bounds (no free slots), return False, emptyListStartPointer
@@ -99,7 +99,7 @@ def testAddNode():
 
     # Test adding a node with value 99
     print("\nAdding node with value 99...")
-    result = addNodeWithData(99)
+    result = addNodeAtEndWithData(99)
 
     if result:
         print("Node added successfully!")
@@ -133,3 +133,6 @@ def testRemoveNode():
 # Run the tests
 testAddNode()
 testRemoveNode()
+
+
+print(f"{3+4} = 7")

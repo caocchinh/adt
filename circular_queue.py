@@ -1,22 +1,19 @@
 headIndex = -1
 tailIndex = -1
 numberOfItems = 0
-queue = [-1] * 20
+queue = [-1] * 4
 
 
 def enQueue(value):
     global queue, headIndex, tailIndex, numberOfItems
     if (numberOfItems >= len(queue)):
         return False
-    if tailIndex == -1:
-        headIndex = 0
+    if (headIndex == -1):
+        headIndex = 0 
+    tailIndex += 1
+    if (tailIndex >= len(queue)):
         tailIndex = 0
-        queue[0] = value
-    else:
-        tailIndex += 1
-        if (tailIndex >= len(queue)):
-            tailIndex = 0
-        queue[tailIndex] = value
+    queue[tailIndex] = value
     numberOfItems += 1
     return True
 
@@ -38,8 +35,21 @@ def deQueue():
 enQueue(10)
 enQueue(12)
 enQueue(14)
+enQueue(16)
 
+print(queue)
 
+deQueue()
+enQueue(18)
+
+print(queue)
+
+deQueue()
+deQueue()
+deQueue()
 deQueue()
 
 print(queue)
+
+with open("output.txt", "w") as f:
+    f.write(str(queue))
