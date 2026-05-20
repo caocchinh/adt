@@ -13,7 +13,7 @@ def binarySearch(arr, target):
         # Calculate mid index
         # (low + high) // 2 can overflow in some languages, 
         # though not Python, but this is the standard robust way:
-        mid = low + (high - low) // 2
+        mid =  (high + low) // 2
         
         # Check if target is present at mid
         if arr[mid] == target:
